@@ -1,0 +1,38 @@
+#install build tools
+
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install -y build-essential bmagic python python-pip unzip
+
+#BitVector module for python.
+pip install BitVector
+
+#Install Version 3.7 of Intel Pin.
+wget http://software.intel.com/sites/landingpage/pintool/downloads/pin-3.2-81205-gcc-linux.tar.gz
+
+#EWAGBoolArray 0.4.0: https://github.com/lemire/EWAHBoolArray/releases/tag/0.4.0 - To install it in your system just copy headers file(/path/to/EWAHBoolArray-0.4.0/headers) in /usr/include folder.
+wget https://github.com/lemire/EWAHBoolArray/archive/0.4.0.tar.gz
+tar -xvf 0.4.0.tar.gz
+sudo cp EWAHBoolArray-0.4.0/headers/* /usr/include
+
+
+#Ghidra RE tool -OR- IDA disassembler to run static analysis part of VUzzer -OR- Ashley (a MS student from Grenoble) visited VUSec as intern and developed a 'angr' (http://angr.io/) based static analysis module. The code can be found at https://github.com/ash09/angr-static-analysis-for-vuzzer64 (yet to be populated!). However, it should be noted that we have not tested this script much and one can expect some glitches specially on large complex applications! If you have questions on this script, please direct them to Ashley.
+We have tested VUzzer by running it on Ubuntu 18.04 LTS, Linux 4.15.0 image.
+
+wget https://ghidra-sre.org/ghidra_9.1_PUBLIC_20191023.zip
+unzip ghidra_9.1_PUBLIC_20191023.zip
+
+#Get main VUzzer Code
+
+mkdir IntelPin
+cd vuzzer64
+export PIN_HOME=~/IntelPin
+export PIN_ROOT=~/pin-3.2-81205-gcc-linux
+export DFT_HOME=$(pwd)/libdft64
+cd fuzzer-code
+make
+cd ../libdft64
+make
+cd ..
+
+# Running The code
+# Install Ghidra on GUI-capabple machine. Add the script ghidra_BB_weight.py to ghidra and run it from the ghidra script manager.
