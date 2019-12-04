@@ -1,3 +1,5 @@
+# Please run "setup" instead of any other install file. All other install scripts will be run from there.
+
 VUzzer(64) Version 1.0
 ===========
 
