@@ -1,5 +1,5 @@
 #install build tools
-
+cd ..
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get install -y build-essential bmagic python python-pip unzip
 
@@ -25,8 +25,8 @@ unzip ghidra_9.1_PUBLIC_20191023.zip
 
 mkdir IntelPin
 cd vuzzer64
-export PIN_HOME=~/IntelPin
-export PIN_ROOT=~/pin-3.2-81205-gcc-linux
+export PIN_HOME=../IntelPin
+export PIN_ROOT=../pin-3.2-81205-gcc-linux
 export DFT_HOME=$(pwd)/libdft64
 cd fuzzer-code
 make
@@ -34,5 +34,5 @@ cd ../libdft64
 make
 cd ..
 
-# Running The code
-# Install Ghidra on GUI-capabple machine. Add the script ghidra_BB_weight.py to ghidra and run it from the ghidra script manager.
+# Note for getting BB specs
+echo "Install Ghidra on GUI-capabple machine. Add the script ghidra_BB_weight.py to ghidra and run it from the ghidra script manager."
